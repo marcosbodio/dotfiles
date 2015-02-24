@@ -57,9 +57,10 @@
 (setq org-hide-leading-stars t)
 (setq org-completion-use-ido t)
 (setq org-indent-mode t)
+(setq org-src-fontify-natively t)
 ;; Org-mode agenda: use all files in path ~/org
 ;; (setq org-agenda-files '("~/org"))
-(setq org-agenda-files '("~/org/todo.org" "~/org/ibm2014.org" "~/org/ibm2013.org" "~/org/personale/buoni.org" "~/org/ibm_patents.org" "~/org/bookmarks.org"))
+(setq org-agenda-files '("~/org/todo.org" "~/org/ibm2014.org" "~/org/ibm2013.org" "~/org/personale/buoni.org" "~/org/ibm_patents.org" "~/org/bookmarks.org" "~/org/myblog.org"))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ido
 (require 'ido)
@@ -98,21 +99,10 @@
 (org-babel-do-load-languages
  'org-babel-load-languages
  '(;; other Babel languages
-   (plantuml . t)))
+   (plantuml . t)
+   (scala . t)))
 (setq org-plantuml-jar-path
       (expand-file-name "~/Downloads/plantuml.jar"))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; marmalade-repo
