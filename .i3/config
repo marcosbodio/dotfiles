@@ -29,16 +29,16 @@ mode "i3" {
 	# bindsym d exec dmenu_run
 
 	# change focus
-	bindsym j focus left; mode "default"
-	bindsym k focus down; mode "default"
-	bindsym l focus up; mode "default"
-	bindsym semicolon focus right; mode "default"
+	# bindsym j focus left; mode "default"
+	# bindsym k focus down; mode "default"
+	# bindsym l focus up; mode "default"
+	# bindsym semicolon focus right; mode "default"
 
 	# alternatively, you can use the cursor keys:
-	bindsym Left focus left; mode "default"
-	bindsym Down focus down; mode "default"
-	bindsym Up focus up; mode "default"
-	bindsym Right focus right; mode "default"
+	bindsym Left focus left
+	bindsym Down focus down
+	bindsym Up focus up
+	bindsym Right focus right
 
 	# move focused window
 	bindsym Shift+J move left; mode "default"
@@ -119,13 +119,16 @@ mode "i3" {
 	# Synapse
 	bindsym F12 exec synapse; mode "default"
 
+	# cycle across desktops
+	bindsym Control+Right workspace next
+	bindsym Control+Left workspace prev
+
 	# back to normal: Alt or Escape
 	bindsym BackSpace mode "default"
 	# bindsym Escape mode "default"
 }
 
 bindsym $mod+i mode "i3"
-
 
 # # resize window (you can also use the mouse for that)
 # mode "resize" {
@@ -207,7 +210,7 @@ exec --no-startup-id glipper
 # Synapse
 exec --no-startup-id synapse --startup
 # background
-exec --no-startup-id feh --bg-center /home/marco/Pictures/wallpapers/nexorade___wood_by_taffgoch-d3fr9mj_small.jpg
+# exec --no-startup-id feh --bg-center /home/marco/Pictures/wallpapers/nexorade___wood_by_taffgoch-d3fr9mj_small.jpg
 
 # # Pulse Audio controls
 # bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
