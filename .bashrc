@@ -108,10 +108,17 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-# marco: PATH
-export MAVEN_HOME=/home/marco/bin/apache-maven-3.0.5
-export SCALA_HOME=/home/marco/bin/scala-2.10.2
-export SBT_HOME=/home/marco/bin/sbt
-export ACTIVATOR_HOME=/home/marco/bin/activator-1.2.6-minimal
+# marco: editor
+export EDITOR='emacs -nw'
 
-export PATH=$ACTIVATOR_HOME:$SBT_HOME:$MAVEN_HOME/bin:$SCALA_HOME/bin:$SBT_HOME/bin:$PATH
+# marco: alias
+alias op='xdg-open'
+
+# marco: PATH
+#export MAVEN_HOME=/home/marco/bin/apache-maven-3.0.5
+export SCALA_HOME=/home/marco/bin/scala-2.11.7
+#export SBT_HOME=/home/marco/bin/sbt
+#export ACTIVATOR_HOME=/home/marco/bin/activator-1.2.6-minimal
+export JAVA_HOME=/usr/lib/j2sdk1.7-ibm
+
+export PATH=$SCALA_HOME/bin:$PATH
