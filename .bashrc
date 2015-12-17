@@ -113,6 +113,7 @@ export EDITOR='emacs -nw'
 
 # marco: alias
 alias op='xdg-open'
+alias gitlog='git log --oneline --graph --decorate --all'
 
 # marco: PATH
 #export MAVEN_HOME=/home/marco/bin/apache-maven-3.0.5
