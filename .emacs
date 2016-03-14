@@ -47,7 +47,8 @@
 (define-key global-map (kbd "M-c") 'quick-copy-line)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org-mode settings
-;; (require 'org-install)
+;; Set to the location of your Org files on your local system
+(setq org-directory "~/org")
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
@@ -65,6 +66,17 @@
 ;; use Chrome to open link from org-mode
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "google-chrome")
+;; seetting up capture: http://orgmode.org/org.html#Setting-up-capture
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+(define-key global-map "\C-cc" 'org-capture)
+;; capture templates
+(setq org-capture-templates
+    '(("t" "Todo" entry (file+headline "~/org/todo.org" "Tasks")
+           "* TODO %?\n  %i\n  %a")
+      ("b" "Bookmark" entry (file+headline "~/org/notes.org" "Bookmarks")
+	   "* %?%^G\n:PROPERTIES:\n:CREATED: %U\n:END:\n\n" :empty-lines 0)
+      ("j" "Journal" entry (file+datetree "~/org/myblog.org")
+           "* %?\nEntered on %U\n  %i\n  %a")))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ido
 (require 'ido)
@@ -118,9 +130,9 @@
       (expand-file-name "~/Downloads/plantuml.jar"))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
 ;; redefine flycheck keymap prefix from "C-c !" to "C-c f", because the first conflicts with org mode agenda
-(setq flycheck-keymap-prefix (kbd "C-c f"))
+;; (setq flycheck-keymap-prefix (kbd "C-c f"))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; marmalade-repo
 (require 'package)
@@ -128,19 +140,6 @@
 	     '("marmalade" .
 	       "http://marmalade-repo.org/packages/"))
 (package-initialize)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (sanityinc-solarized-dark)))
- '(custom-safe-themes (quote ("4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (setq projectile-mode-line " Projectile")
 (require 'sql)
@@ -149,3 +148,17 @@
   "SSH to linux, then connect"
   (let ((default-directory "/ssh:db2inst1@iribnchmrk.mul.ie.ibm.com:"))
     ad-do-it))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (solarized-dark)))
+ '(custom-safe-themes (quote ("e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
