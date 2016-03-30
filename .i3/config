@@ -111,7 +111,7 @@ mode "i3" {
 
 	# Move the current workspace to the next output
 	# (effectively toggles when you only have two outputs)
-	bindsym x move workspace to output right; mode "default"
+	bindsym x move workspace to output right
 
 	# Toggle between stacking/tabbed/splith/splitv:
 	bindsym t layout toggle all
@@ -194,7 +194,8 @@ exec --no-startup-id /usr/bin/gnome-settings-daemon
 # NetworkManager applet
 exec --no-startup-id nm-applet
 # IBM Asset Management
-exec --no-startup-id /opt/ibm/ibmsam/bin/ibmsaml_wrapper -q
+# exec --no-startup-id /opt/ibm/ibmsam/bin/ibmsaml_wrapper -q
+exec --no-startup-id /opt/ibm/ibmsam/bin/ibmsaml
 # IBM Registration Tool
 exec --no-startup-id sudo /usr/share/ibm-regtool/ibmregtool-launcher.py
 # IBM Workstation Security Tool Applet
