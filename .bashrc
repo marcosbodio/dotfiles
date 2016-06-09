@@ -117,9 +117,14 @@ alias gitlog='git log --oneline --graph --decorate --all'
 
 # marco: PATH
 #export MAVEN_HOME=/home/marco/bin/apache-maven-3.0.5
-export SCALA_HOME=/home/marco/bin/scala-2.11.7
+export SCALA_HOME=/home/marco/bin/scala-2.11.8/
 #export SBT_HOME=/home/marco/bin/sbt
-#export ACTIVATOR_HOME=/home/marco/bin/activator-1.2.6-minimal
-export JAVA_HOME=/usr/lib/j2sdk1.7-ibm
+export JAVA_HOME=/usr/lib/jvm/ibm-java80-jdk-x86_64/
 
 export PATH=$SCALA_HOME/bin:$PATH
+
+# for nice scrollbars with eclipse dark theme under ubuntu
+# export LIBOVERLAY_SCROLLBAR=1
+
+# Manually source autojump - https://github.com/joelthelion/autojump
+. /usr/share/autojump/autojump.sh
