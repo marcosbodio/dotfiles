@@ -1,4 +1,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; disable CTRL-Z
+(global-unset-key (kbd "C-z"))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; FIX hang issue with tramp
+;; (setq projectile-mode-line " Projectile")
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; color preferences
 ;; (set-background-color "black")
 ;; (set-foreground-color "white")
@@ -9,6 +15,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; show column numbers in the mode line
 (setq column-number-mode t)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; set global highlight mode
+(global-hl-line-mode 1)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; remove scroll bar, tool bar, and menu bar
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -74,7 +83,7 @@
     '(("t" "Todo" entry (file+headline "~/org/todo.org" "Tasks")
            "* TODO %?\n  %i\n  %a")
       ("b" "Bookmark" entry (file+headline "~/org/notes.org" "Bookmarks")
-	   "* %?%^G\n:PROPERTIES:\n:CREATED: %U\n:END:\n\n" :empty-lines 0)
+	   "* %? %^G\n:PROPERTIES:\n:CREATED: %U\n:END:\n\n" :empty-lines 0)
       ("j" "Journal" entry (file+datetree "~/org/myblog.org")
            "* %?\nEntered on %U\n  %i\n  %a")))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -101,7 +110,7 @@
 ;; (yas-global-mode 1)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ace-jumps
-(add-to-list 'load-path "/home/marco/.emacs.d/elpa/ace-jump-mode-2.0.0.0/")
+;; (add-to-list 'load-path "/home/marco/.emacs.d/elpa/ace-jump-mode-2.0.0.0/")
 (autoload
   'ace-jump-mode
   "ace-jump-mode"
@@ -124,26 +133,38 @@
 ;; active Org-babel languages
 (org-babel-do-load-languages
  'org-babel-load-languages
- '(;; other Babel languages
-   (plantuml . t)))
+  '( (perl . t)         
+     (python . t)
+     (plantuml . t)
+;;     (restclient . t)
+;;   (http . t)
+   ))   
+
 (setq org-plantuml-jar-path
-      (expand-file-name "~/Downloads/plantuml.jar"))
+      (expand-file-name "~/bin/plantuml-8040.jar"))
+
+;; to get syntax highlighting for MySQL SQL
+(add-hook 'sql-mode-hook
+          (lambda ()
+            (sql-highlight-mysql-keywords)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; flycheck
 ;; (add-hook 'after-init-hook #'global-flycheck-mode)
 ;; redefine flycheck keymap prefix from "C-c !" to "C-c f", because the first conflicts with org mode agenda
 ;; (setq flycheck-keymap-prefix (kbd "C-c f"))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; marmalade-repo
+;; other repos
 (require 'package)
-(add-to-list 'package-archives
-	     '("marmalade" .
-	       "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (setq projectile-mode-line " Projectile")
+;; SQL DB2 settings for iribnchmrk.mul.ie.ibm.com
 (require 'sql)
-(setq sql-db2-program "/data/sngl-adpt/db2/db2inst1/sqllib/bin/db2")
+(setq sql-db2p-rogram "/data/sngl-adpt/db2/db2inst1/sqllib/bin/db2")
 (defadvice sql-db2 (around sql-db2-around activate)
   "SSH to linux, then connect"
   (let ((default-directory "/ssh:db2inst1@iribnchmrk.mul.ie.ibm.com:"))
