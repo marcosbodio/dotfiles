@@ -123,6 +123,9 @@ export JAVA_HOME=/usr/lib/jvm/ibm-java80-jdk-x86_64/
 
 export PATH=$SCALA_HOME/bin:$PATH
 
+# fixing eclipse flickering: see http://www.kaibader.de/fix-eclipse-luna-display-on-ubuntu-14-04/
+export SWT_GTK3=0
+
 # for nice scrollbars with eclipse dark theme under ubuntu
 # export LIBOVERLAY_SCROLLBAR=1
 
