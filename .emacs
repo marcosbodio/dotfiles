@@ -162,13 +162,17 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; initialize exec-path-from-shell for MAC OSX (see https://github.com/purcell/exec-path-from-shell)
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; SQL DB2 settings for iribnchmrk.mul.ie.ibm.com
-(require 'sql)
-(setq sql-db2p-rogram "/data/sngl-adpt/db2/db2inst1/sqllib/bin/db2")
-(defadvice sql-db2 (around sql-db2-around activate)
-  "SSH to linux, then connect"
-  (let ((default-directory "/ssh:db2inst1@iribnchmrk.mul.ie.ibm.com:"))
-    ad-do-it))
+;; (require 'sql)
+;; (setq sql-db2p-rogram "/data/sngl-adpt/db2/db2inst1/sqllib/bin/db2")
+;; (defadvice sql-db2 (around sql-db2-around activate)
+;;   "SSH to linux, then connect"
+;;   (let ((default-directory "/ssh:db2inst1@iribnchmrk.mul.ie.ibm.com:"))
+;;     ad-do-it))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -179,7 +183,7 @@
  '(custom-safe-themes
    (quote
     ("e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
- '(package-selected-packages (quote (json-mode solarized-theme))))
+ '(package-selected-packages (quote (exec-path-from-shell json-mode solarized-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
