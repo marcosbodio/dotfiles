@@ -87,6 +87,9 @@
       ("j" "Journal" entry (file+datetree "~/org/myblog.org")
            "* %?\nEntered on %U\n  %i\n  %a")))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; turn off auto-backup (~ files)
+(setq make-backup-files nil) ; stop creating backup~ files
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ido
 (require 'ido)
 (setq ido-enable-flex-matching t)
@@ -183,7 +186,9 @@
  '(custom-safe-themes
    (quote
     ("e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
- '(package-selected-packages (quote (exec-path-from-shell json-mode solarized-theme))))
+ '(package-selected-packages
+   (quote
+    (gnuplot gnuplot-mode exec-path-from-shell json-mode solarized-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
