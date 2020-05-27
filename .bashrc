@@ -16,3 +16,4 @@ export EDITOR='emacs -nw'
 
 # for git bash_completion
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+alias ic="ibmcloud"
