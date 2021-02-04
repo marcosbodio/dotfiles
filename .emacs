@@ -184,17 +184,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (solarized-light)))
+ '(auto-dark-emacs/dark-theme 'solarized-dark)
+ '(auto-dark-emacs/light-theme 'solarized-light)
+ '(custom-enabled-themes '(solarized-light))
  '(custom-safe-themes
-   (quote
-    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
- '(org-export-backends (quote (ascii html icalendar latex md odt)))
+   '("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default))
+ '(org-export-backends '(ascii html icalendar latex md odt))
  '(org-modules
-   (quote
-    (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m)))
+   '(org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m))
  '(package-selected-packages
-   (quote
-    (markdown-toc markdown-mode gnuplot gnuplot-mode exec-path-from-shell json-mode solarized-theme))))
+   '(ace-window markdown-toc markdown-mode gnuplot gnuplot-mode exec-path-from-shell json-mode solarized-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -206,3 +205,13 @@
 (setq markdown-command "/usr/local/bin/pandoc")
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; show which parenthesis matches the one I'm looking at https://www.gnu.org/software/emacs/manual/html_node/efaq/Matching-parentheses.html
+(show-paren-mode 1)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ace-window - https://github.com/abo-abo/ace-window
+(global-set-key (kbd "M-o") 'ace-window)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; auto-dark-emacs: https://github.com/LionyxML/auto-dark-emacs
+(add-to-list 'load-path "~/.emacs.d/vendor/auto-dark-emacs/")
+(require 'auto-dark-emacs)
