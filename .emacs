@@ -193,7 +193,7 @@
  '(org-modules
    '(org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m))
  '(package-selected-packages
-   '(ace-window markdown-toc markdown-mode gnuplot gnuplot-mode exec-path-from-shell json-mode solarized-theme)))
+   '(org-superstar ace-window markdown-toc markdown-mode gnuplot gnuplot-mode exec-path-from-shell json-mode solarized-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -215,3 +215,35 @@
 ;; auto-dark-emacs: https://github.com/LionyxML/auto-dark-emacs
 (add-to-list 'load-path "~/.emacs.d/vendor/auto-dark-emacs/")
 (require 'auto-dark-emacs)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; org-superstar
+;;(require 'org-superstar)
+;; following configuration is taken from https://github.com/integral-dw/org-superstar-mode/blob/master/DEMO.org, section LaTeX-style headings
+;;; Titles and Sections
+;; hide #+TITLE:
+(setq org-hidden-keywords '(title))
+;; set basic title font
+(set-face-attribute 'org-level-8 nil :weight 'bold :inherit 'default)
+;; Low levels are unimportant => no scaling
+(set-face-attribute 'org-level-7 nil :inherit 'org-level-8)
+(set-face-attribute 'org-level-6 nil :inherit 'org-level-8)
+(set-face-attribute 'org-level-5 nil :inherit 'org-level-8)
+(set-face-attribute 'org-level-4 nil :inherit 'org-level-8)
+;; Top ones get scaled the same as in LaTeX (\large, \Large, \LARGE)
+(set-face-attribute 'org-level-3 nil :inherit 'org-level-8 :height 1.2) ;\large
+(set-face-attribute 'org-level-2 nil :inherit 'org-level-8 :height 1.44) ;\Large
+(set-face-attribute 'org-level-1 nil :inherit 'org-level-8 :height 1.728) ;\LARGE
+;; Only use the first 3 styles and do not cycle.
+(setq org-cycle-level-faces nil)
+(setq org-n-level-faces 3)
+;; Document Title, (\huge)
+(set-face-attribute 'org-document-title nil
+                    :height 2.074
+                    :foreground 'unspecified
+                    :inherit 'org-level-8)
+
+;;; Basic Setup
+;; Auto-start Superstar with Org
+(add-hook 'org-mode-hook
+          (lambda ()
+            (org-superstar-mode 1)))
