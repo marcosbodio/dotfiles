@@ -24,12 +24,6 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; theme
-;; (load-theme 'wheatgrass t) 
-;; solarized them from https://github.com/sellout/emacs-color-theme-solarized      
-;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized")
-;; (load-theme 'solarized-dark t)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; use spaces instead of tabs, and make them 4 spaces long
 ;; (setq-default indent-tabs-mode nil)
 ;; (setq default-tab-width 4)
